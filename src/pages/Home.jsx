@@ -4,6 +4,8 @@ import { Compass, PenTool, Home as HomeIcon, Navigation as NavIcon, Smartphone, 
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import InteractiveTrailMap from '../components/InteractiveTrailMap';
+import heroImage from "../assets/home-page-1.jpeg";
+
 
 export default function Home() {
   const [hoveredRoute, setHoveredRoute] = useState(null);
@@ -251,7 +253,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative h-screen parallax-bg overflow-hidden" style={{
-          backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url('/assets/home-page-1.jpeg')"      }}>
+          backgroundImage: 'linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url(${heroImage})'      }}>
         <div className="grain-overlay absolute inset-0" />
         <div className="absolute inset-0 flex items-center justify-center text-center px-6">
           <div className="max-w-4xl">
@@ -356,7 +358,7 @@ export default function Home() {
 
       {/* Sacred Heritage Section */}
       <section className="relative parallax-bg py-32" style={{
-          backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url('/assets/home-page-1.jpeg')"      }}>
+          backgroundImage: 'linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url(${heroImage})'      }}>
         <div className="grain-overlay absolute inset-0" />
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">

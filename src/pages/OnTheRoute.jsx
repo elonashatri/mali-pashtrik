@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Home, Bus, Smartphone, Utensils, MapPin, Heart, Phone } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import heroImage from "../assets/ne-rruge.jpeg";
 
 export default function OnTheRoute() {
   const [language, setLanguage] = useState('al');
@@ -11,7 +12,7 @@ export default function OnTheRoute() {
       <Navigation language={language} setLanguage={setLanguage} />
       
       <section className="relative h-[60vh] flex items-center justify-center" style={{
-        backgroundImage: "linear-gradient(rgba(212, 165, 116, 0.85), rgba(212, 165, 116, 0.85)), url('/assets/ne-rruge.jpeg')",
+        backgroundImage: 'linear-gradient(rgba(212, 165, 116, 0.85), rgba(212, 165, 116, 0.85)), url(${heroImage})',
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }}>

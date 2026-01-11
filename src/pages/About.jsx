@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Users, Heart, Target, Mail, MapPin, Phone } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import heroImage from "../assets/rreth-nesh.jpeg";
 
 export default function About() {
   const [language, setLanguage] = useState('al');
@@ -11,7 +12,7 @@ export default function About() {
       <Navigation language={language} setLanguage={setLanguage} />
       
       <section className="relative h-[60vh] flex items-center justify-center" style={{
-        backgroundImage: "linear-gradient(rgba(26, 77, 46, 0.75), rgba(26, 77, 46, 0.75)), url('/assets/rreth-nesh.jpeg')",
+        backgroundImage: 'linear-gradient(rgba(26, 77, 46, 0.75), rgba(26, 77, 46, 0.75)), url(${heroImage})',
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }}>

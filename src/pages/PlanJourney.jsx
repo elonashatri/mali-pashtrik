@@ -3,6 +3,7 @@ import { Map, Compass, Calendar, Users, Navigation as NavIcon, ChevronRight } fr
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
+import heroImage from "../assets/planifiko-udhtimin.jpeg";
 
 export default function PlanJourney() {
   const [language, setLanguage] = useState('al');
@@ -88,7 +89,7 @@ export default function PlanJourney() {
       <Navigation language={language} setLanguage={setLanguage} />
       
       <section className="relative h-[60vh] flex items-center justify-center" style={{
-        backgroundImage: "linear-gradient(rgba(130, 101, 130, 0.75), rgba(77, 6, 68, 0.75)), url('/assets/planifiko-udhtimin.jpeg')",
+        backgroundImage: 'linear-gradient(rgba(130, 101, 130, 0.75), rgba(77, 6, 68, 0.75)), url(${heroImage})',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed'

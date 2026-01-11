@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Heart, Mountain, Book, Users, Activity, Calendar, CheckCircle, Backpack } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import heroImage from "../assets/original-image-pashtriku.jpeg";
+
 
 export default function Prepare() {
   const [language, setLanguage] = useState('al');
@@ -146,7 +148,7 @@ export default function Prepare() {
 
       {/* Hero */}
       <section className="relative h-[60vh] flex items-center justify-center" style={{
-        backgroundImage: "linear-gradient(rgba(196, 91, 63, 0.8), rgba(196, 91, 63, 0.8)), url('/assets/home-page-1.jpeg')",
+        backgroundImage: `linear-gradient(rgba(196, 91, 63, 0.8), rgba(196, 91, 63, 0.8)), url(${heroImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed'

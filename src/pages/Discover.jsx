@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BookOpen, Mountain, Users, Calendar, Church, Scroll, MapPin, ChevronRight } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import heroImage from "../assets/stanet.jpeg";
 
 export default function Discover() {
   const [language, setLanguage] = useState('al');
@@ -122,7 +123,7 @@ export default function Discover() {
           },
           {
             period: 'Shekulli i 13-të',
-            title: 'Era e Sari Saltikut',
+            title: 'Epoka e Sari Saltikut',
             desc: 'Shenjti sufi Sari Saltik, një dervish në oborrin e Sulltan Orhanit (1326-1360) dhe dishepull i Haxhi Bektash Veliut, themeloi një nga 72 vendet e tij të shenjta (ziafetet) në Ballkan në Pashtrik.',
             icon: BookOpen
           },
@@ -183,7 +184,7 @@ export default function Discover() {
             icon: Users
           },
           {
-            name: 'Ofertat Rituale',
+            name: 'Ritualet',
             desc: 'Pelegrinët sjellin dhurata (nezër) në Tyrben e Shenjtë—peshqirë, këmisha, monedha dhe sende me vlerë nominale. Ndezin qirinj si në tyrben kryesore ashtu edhe në shpellën e shenjtë, duke u lutur për shëndet, fertilitet dhe bekime.',
             icon: Mountain
           },
@@ -247,7 +248,7 @@ export default function Discover() {
 
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center" style={{
-        backgroundImage: "linear-gradient(rgba(44, 62, 106, 0.75), rgba(53, 71, 99, 0.75)), url('/assets/stanet.jpeg')",
+        backgroundImage: 'linear-gradient(rgba(44, 62, 106, 0.75), rgba(53, 71, 99, 0.75)), url(${heroImage})',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed'
