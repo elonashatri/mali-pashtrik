@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Mountain, MapPin, TrendingUp, Clock, Ruler } from 'lucide-react';
 
+
 export default function InteractiveTrailMap({ language = 'en' }) {
   const mapRef = useRef(null);
   const [mapLoaded, setMapLoaded] = useState(false);
@@ -129,7 +130,7 @@ export default function InteractiveTrailMap({ language = 'en' }) {
 
     // Load and display GPX track
     try {
-      new L.GPX('/assets/kushnin-has-maja-e-pashtrikut-pashtrik-peak-kushnin-has.gpx', {
+      new L.GPX(import.meta.env.BASE_URL + 'assets/kushnin-has-maja-e-pashtrikut-pashtrik-peak-kushnin-has.gpx', {
         async: true,
         marker_options: {
           startIconUrl: null,

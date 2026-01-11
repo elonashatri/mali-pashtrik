@@ -248,7 +248,7 @@ export default function Discover() {
 
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center" style={{
-        backgroundImage: 'linear-gradient(rgba(44, 62, 106, 0.75), rgba(53, 71, 99, 0.75)), url(${heroImage})',
+        backgroundImage: `linear-gradient(rgba(44, 62, 106, 0.75), rgba(53, 71, 99, 0.75)), url(${heroImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed'

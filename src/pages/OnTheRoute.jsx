@@ -12,7 +12,7 @@ export default function OnTheRoute() {
       <Navigation language={language} setLanguage={setLanguage} />
       
       <section className="relative h-[60vh] flex items-center justify-center" style={{
-        backgroundImage: 'linear-gradient(rgba(212, 165, 116, 0.85), rgba(212, 165, 116, 0.85)), url(${heroImage})',
+        backgroundImage: `linear-gradient(rgba(212, 165, 116, 0.85), rgba(212, 165, 116, 0.85)), url(${heroImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }}>

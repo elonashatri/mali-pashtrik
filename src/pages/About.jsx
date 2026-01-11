@@ -12,7 +12,7 @@ export default function About() {
       <Navigation language={language} setLanguage={setLanguage} />
       
       <section className="relative h-[60vh] flex items-center justify-center" style={{
-        backgroundImage: 'linear-gradient(rgba(26, 77, 46, 0.75), rgba(26, 77, 46, 0.75)), url(${heroImage})',
+        backgroundImage: `linear-gradient(rgba(26, 77, 46, 0.75), rgba(26, 77, 46, 0.75)), url(${heroImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }}>
