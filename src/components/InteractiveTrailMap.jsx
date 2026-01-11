@@ -43,7 +43,7 @@ export default function InteractiveTrailMap({ language = 'en' }) {
         end: 'Fundi i Shtegut - Kushnin/Has'
       },
       legend: {
-        trail: 'Shtegu i Pelegrinazhit',
+        trail: 'Fillo nga Kushnini',
         waypoints: 'Vendndodhje Kryesore',
         elevation: 'Profili i Lartësisë'
       }
@@ -129,71 +129,62 @@ export default function InteractiveTrailMap({ language = 'en' }) {
     });
 
     // Load and display GPX track
-    try {
-      new L.GPX(import.meta.env.BASE_URL + 'assets/kushnin-has-maja-e-pashtrikut-pashtrik-peak-kushnin-has.gpx', {
+  // Load and display GPX tracks
+  try {
+    const gpx1 = new L.GPX(
+      import.meta.env.BASE_URL + 'assets/kushnin-has-maja-e-pashtrikut-pashtrik-peak-kushnin-has.gpx', 
+      {
         async: true,
-        marker_options: {
-          startIconUrl: null,
-          endIconUrl: null,
-          shadowUrl: null,
-          wptIconUrls: {
-            '': null
-          }
-        },
-        polyline_options: {
-          color: '#c45b3f',
-          weight: 5,
-          opacity: 0.9,
-          lineCap: 'round',
-          lineJoin: 'round',
-          smoothFactor: 2
-        }
-      })
-      .on('loaded', function(e) {
-        const gpx = e.target;
-        map.fitBounds(gpx.getBounds().pad(0.1));
-        
-        // Get track statistics
-        const distance = (gpx.get_distance() / 1000).toFixed(1); // km
-        const elevation = gpx.get_elevation_gain().toFixed(0); // m
-        const duration = Math.ceil(gpx.get_duration() / 3600); // hours
-        
-        setTrailStats({
-          distance: `${distance} km`,
-          elevation: `${elevation} m`,
-          duration: `${duration}-${duration + 2} ${language === 'en' ? 'hours' : 'orë'}`,
-          difficulty: language === 'en' ? 'Moderate' : 'E Moderuar'
-        });
-
-        // Add custom markers
-        const bounds = gpx.getBounds();
-        
-        // Start point
-        L.marker([bounds.getSouth(), bounds.getWest()], { icon: startIcon })
+        marker_options: { startIconUrl: null, endIconUrl: null, shadowUrl: null },
+        polyline_options: { color: '#c45b3f', weight: 5, opacity: 0.9, lineCap: 'round', lineJoin: 'round', smoothFactor: 2 }
+      }
+    ).on('loaded', function(e) {
+      const gpx = e.target;
+      map.fitBounds(gpx.getBounds().pad(0.1));
+      // Custom markers for Kushnin start route
+      const bounds = gpx.getBounds();
+      L.marker([bounds.getSouth(), bounds.getWest()], { icon: startIcon })
+        .addTo(map)
+        .bindPopup(`<strong>${t.points.start}</strong>`);
+      
+      const highPoint = gpx.get_elevation_max_imp();
+      if (highPoint) {
+        L.marker([highPoint.lat, highPoint.lng], { icon: summitIcon })
           .addTo(map)
-          .bindPopup(`<strong>${t.points.start}</strong>`);
-        
-        // Summit point (highest point)
-        const highPoint = gpx.get_elevation_max_imp();
-        if (highPoint) {
-          L.marker([highPoint.lat, highPoint.lng], { icon: summitIcon })
-            .addTo(map)
-            .bindPopup(`<strong>${t.points.summit}</strong>`);
-        }
+          .bindPopup(`<strong>${t.points.summit}</strong>`);
+      }
+    }).addTo(map);
 
-        setMapLoaded(true);
-      })
-      .on('error', function(e) {
-        console.error('Error loading GPX:', e);
-        // Fallback to manual trail display
-        displayFallbackTrail(map, L);
-      })
-      .addTo(map);
-    } catch (error) {
-      console.error('GPX loading error:', error);
-      displayFallbackTrail(map, L);
-    }
-  };
+    // --- Second GPX track from Goruzhup ---
+    const gpx2 = new L.GPX(
+      import.meta.env.BASE_URL + 'assets/pashtrik-trail-goruzhup.gpx',
+      {
+        async: true,
+        marker_options: { startIconUrl: null, endIconUrl: null, shadowUrl: null },
+        polyline_options: { color: '#1a73e8', weight: 5, opacity: 0.9, lineCap: 'round', lineJoin: 'round', smoothFactor: 2 }
+      }
+    ).on('loaded', function(e) {
+      const gpx = e.target;
+      // Optional: Do not fit map to this track to keep initial focus
+      // Add start marker for Goruzhup
+      const bounds = gpx.getBounds();
+      L.marker([bounds.getSouth(), bounds.getWest()], { icon: startIcon })
+        .addTo(map)
+        .bindPopup(`<strong>Trail Start - Gorozhup</strong>`);
+      
+      const highPoint = gpx.get_elevation_max_imp();
+      if (highPoint) {
+        L.marker([highPoint.lat, highPoint.lng], { icon: summitIcon })
+          .addTo(map)
+          .bindPopup(`<strong>${t.points.summit}</strong>`);
+      }
+    }).addTo(map);
+
+  } catch (error) {
+    console.error('GPX loading error:', error);
+    displayFallbackTrail(map, L);
+  }
+    setMapLoaded(true);};
 
   const displayFallbackTrail = (map, L) => {
     // Fallback coordinates if GPX fails to load
@@ -275,21 +266,26 @@ export default function InteractiveTrailMap({ language = 'en' }) {
 
           {/* Map Legend */}
           <div className="bg-[#1a4d2e] text-white p-6">
-            <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-6 text-center">
-              <div className="flex items-center justify-center gap-3">
+            <div className="max-w-4xl mx-auto flex flex-wrap justify-center items-center gap-4 text-center">
+              <div className="flex items-center gap-2">
                 <div className="w-8 h-1 bg-[#c45b3f]"></div>
                 <span className="text-sm">{t.legend.trail}</span>
               </div>
-              <div className="flex items-center justify-center gap-3">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-1 bg-[#1a73e8]"></div>
+                <span className="text-sm">Fillo nga Gorozhupi</span>
+              </div>
+              <div className="flex items-center gap-2">
                 <MapPin className="w-5 h-5 text-[#d4a574]" />
                 <span className="text-sm">{t.legend.waypoints}</span>
               </div>
-              <div className="flex items-center justify-center gap-3">
+              <div className="flex items-center gap-2">
                 <TrendingUp className="w-5 h-5 text-[#d4a574]" />
                 <span className="text-sm">{t.legend.elevation}</span>
               </div>
             </div>
           </div>
+
         </div>
 
         {/* Additional Info */}
